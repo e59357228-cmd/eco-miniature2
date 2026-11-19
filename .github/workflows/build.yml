@@ -25,8 +25,11 @@ jobs:
       - name: Create JAR
         run: jar cfe EcosystemApp.jar EcosystemApp *.class
 
-      - name: Package into EXE (with embedded JRE)
-        run: jpackage --type app-image --name EcoMiniature --input . --main-jar EcosystemApp.jar --main-class EcosystemApp
+         - name: Package into EXE (with embedded JRE)
+     run: |
+       mkdir dist
+       move EcosystemApp.jar dist\
+       jpackage --type app-image --name EcoMiniature --input dist --main-jar EcosystemApp.jar --main-class EcosystemApp
 
       - name: Upload Windows build
         uses: actions/upload-artifact@v4
